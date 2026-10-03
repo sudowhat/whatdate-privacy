@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — WhatDate</title>
-<meta name="description" content="WhatDate's privacy policy: no account, no server, and a complete list of the only six things that can leave your phone.">
+<meta name="description" content="WhatDate's privacy policy: no account, no tracking, encrypted local storage, and optional end-to-end encrypted friends relay.">
 <style>
   :root {
     --ink: #1a1a1a;
@@ -64,84 +64,107 @@
 </head>
 <body>
 <main>
-
 <header>
   <h1>Privacy Policy — WhatDate</h1>
-  <p class="meta"><strong>Last updated:</strong> 20 September 2026</p>
-  <p class="meta"><strong>Applies to:</strong> WhatDate for Android, version 0.47.0 and later</p>
 </header>
-
+<p><strong>Last updated:</strong> 3 October 2026</p>
+<p><strong>Applies to:</strong> WhatDate for Android, version 0.54.0 and later</p>
 <div class="lede">
   <h2>The short version</h2>
-  <p>WhatDate keeps your reminders on your phone.</p>
-  <ul>
-    <li><strong>There is no account.</strong> No sign-up, no login, no email, no phone number, no user ID.</li>
-    <li><strong>There is no WhatDate server.</strong> We do not run one. There is nowhere for your data to be sent to us, so we never receive it, and we could not look at it even if we wanted to.</li>
-    <li><strong>We collect nothing.</strong> No analytics, no crash reporting, no advertising, no tracking of any kind.</li>
-    <li><strong>Nothing leaves your phone on its own.</strong> Every single case where something leaves is something you personally started — sharing with a friend, saving a backup, or tapping a link preview. Each one is listed below.</li>
-  </ul>
+<p>WhatDate keeps your reminders on your phone.</p>
+<ul>
+  <li><strong>There is no conventional email/phone/password account.</strong> Online Friends can create a pseudonymous installation identity and, if you choose one, a handle.</li>
+  <li><strong>No analytics, advertising, crash reporting, or behavioral tracking.</strong> Online Friends does process the limited technical records needed to route encrypted friendship traffic.</li>
+  <li><strong>Your reminder content is local by default.</strong> It leaves only when you deliberately share it or choose another feature described below. After you enable Online Friends and allow Internet access, background relay traffic can deliver/reconcile the friendship and shares you already initiated.</li>
+</ul>
 </div>
-
 <h2>Is there an account?</h2>
-<p>No.</p>
-<p>You do not create an account to use WhatDate. There is no password to WhatDate itself, nothing to sign in to, and nothing to sign out of. We have no user list, because there are no users to list.</p>
-<p>When you add a friend in WhatDate, your two phones exchange a key directly with each other. That is what a “friend” is here — an agreement between two phones, not a record on a server. Nobody, including us, holds a directory of who is friends with whom.</p>
-
+<p>Not in the conventional sign-up sense.</p>
+<p>You do not need an email address, phone number, password, or real-name registration to use WhatDate. Online Friends does, however, create a <strong>pseudonymous installation record</strong> so the relay can authenticate an installation, route encrypted messages, enforce limits, and maintain friendship state. If you choose a handle such as <code>@alex</code>, that handle is also stored by the relay for exact-match discovery.</p>
+<p>When you add a friend, the phones exchange cryptographic public keys. A friend relationship therefore binds two WhatDate cryptographic identities. A handle or safety code is not proof of a person's legal identity.</p>
 <h2>What is stored, and where</h2>
 <p>Everything you put into WhatDate is stored <strong>on your phone only</strong>:</p>
 <ul>
   <li>your reminders and events — titles, notes, dates, times, repeat rules, tags</li>
   <li>anything you attach to them — photos, links, locations</li>
   <li>your reminder settings, sounds, and preferences</li>
-  <li>your profile — the name and photo you set</li>
-  <li>your friends list</li>
+  <li>your profile — the name, photo, and optional birthday you set</li>
+  <li>your friends list and the nicknames you give them</li>
 </ul>
-<p>This is kept in a database on your phone that is <strong>encrypted</strong>, with the key held in your phone’s own secure hardware storage. If you turn on App Lock, it also needs your fingerprint or face to open.</p>
-<p>We have also switched off Android’s automatic cloud backup for WhatDate. Your phone will <strong>not</strong> quietly copy your WhatDate data to Google Drive. The only backup is one you make yourself (see below).</p>
-
+<p>This is kept in a database on your phone that is <strong>encrypted</strong>, with the key held in your phone's own secure hardware storage. If you turn on App Lock, it also needs your fingerprint or face to open.</p>
+<p>We have also switched off Android's automatic cloud backup for WhatDate. Your phone will <strong>not</strong> quietly copy your WhatDate data to Google Drive. The only backup is one you make yourself (see below).</p>
+<p>When you configure an action reminder to open an app at a scheduled time, WhatDate queries your installed applications locally to let you choose the target app. This list is queried on demand, is never saved in any database, and is never transmitted off your phone.</p>
 <h2>What leaves your phone, and when</h2>
-<p>This is the complete list. Nothing happens in the background, and nothing happens without you doing it.</p>
-
-<h3>1. Sharing a reminder with a friend who is near you</h3>
+<p>This is the complete list of intended data flows. Reminder content is never uploaded merely because the app is installed. Some Online Friends network operations run in the background after you have enabled Internet access and initiated a friendship/share so delivery, acknowledgements, expiry, and reconciliation can complete.</p>
+<h3>1a. Sharing a reminder with a friend who is near you</h3>
 <p class="fact"><b>What leaves:</b> the reminder you chose to share.</p>
-<p class="fact"><b>Where it goes:</b> straight to your friend’s phone over Bluetooth or Wi-Fi.</p>
-<p class="fact"><b>When:</b> only while you have “Also deliver when we’re near each other” switched on, and only to people you have already added as friends.</p>
-<p>This is phone-to-phone. It does not use the internet and does not pass through any company’s servers — not ours, not anyone’s.</p>
-
+<p class="fact"><b>Where it goes:</b> straight to your friend's phone over Bluetooth or Wi-Fi.</p>
+<p class="fact"><b>When:</b> only while you have "Also deliver when we're near each other" switched on, and only to people you have already added as friends.</p>
+<p>This is phone-to-phone. It does not use the internet and does not pass through any server.</p>
+<h3>1b. Sharing a reminder with a friend who is not near you</h3>
+<p class="fact"><b>What leaves:</b> the reminder you chose to share, <strong>encrypted on your phone</strong> before it leaves, with a key only your friend's phone can unlock.</p>
+<p class="fact"><b>Where it goes:</b> to a minimal relay server we run, which holds the sealed message until your friend's phone picks it up. The relay <strong>cannot read the contents</strong> — it only sees an opaque encrypted blob with a delivery address.</p>
+<p class="fact"><b>When:</b> only when you share a reminder with a friend and they are not within Bluetooth/Wi-Fi range.</p>
+<p>Once your friend's phone picks up the message, the encrypted blob is deleted from the relay. Uncollected messages expire and are deleted within 24 hours. More about the relay is in the dedicated section below.</p>
 <h3>2. Sharing a reminder as a message</h3>
 <p class="fact"><b>What leaves:</b> the reminder you chose to share, as a file or a link.</p>
 <p class="fact"><b>Where it goes:</b> into whichever app you pick to send it — WhatsApp, email, Signal, whatever you choose.</p>
 <p class="fact"><b>When:</b> only when you tap Share and choose an app.</p>
-<p>Once you hand it to another app, that app’s own privacy policy applies to it, not ours. We have no control over, and no visibility into, what happens after that.</p>
-
-<h3>3. Your profile (your name and photo)</h3>
-<p class="fact"><b>What leaves:</b> the display name and photo you set in Settings → Profile.</p>
-<p class="fact"><b>Where it goes:</b> only to people you have added as friends, so they see who a reminder came from. It travels the same two ways as above — phone-to-phone when near, or in an invite you send.</p>
+<p>Once you hand it to another app, that app's own privacy policy applies to it, not ours. We have no control over, and no visibility into, what happens after that.</p>
+<h3>3. Your profile (your name, photo, and optional birthday)</h3>
+<p class="fact"><b>What leaves:</b> the display name, photo, and birthday you choose in Settings → Profile. The birth year is optional; without it friends do not see your age.</p>
+<p class="fact"><b>Where it goes:</b> only to people you have added as friends, so they see who a reminder came from. It travels encrypted the same ways as above — phone-to-phone when near, or through the relay when apart.</p>
 <p class="fact"><b>When:</b> when you send someone an invite, and when your profile reaches friends you already have.</p>
-<p>Your name is included in an invite so the other person can see who is asking. Your photo is never put in the QR code.</p>
-<p>Nobody who is not your friend ever receives your profile.</p>
-
+<p>Your name is included in an invite so the other person can see who is asking. Your birthday is sent only in a signed profile to established friends. Their phone makes a private birthday reminder from it; if you remove your birthday, that linked reminder is withdrawn. A friend can delete their reminder to stop receiving it. <strong>The relay server never sees your name, photo, or birthday</strong> — relay deliveries are encrypted. If you choose to send a profile file through another app, that app can access the file and its own privacy policy applies.</p>
 <h3>4. Link previews</h3>
 <p class="fact"><b>What leaves:</b> the web address (URL) you saved, sent to that website.</p>
 <p class="fact"><b>Where it goes:</b> directly to the website itself — for example, if you save a link to a news article, WhatDate asks that news site for the page title and picture.</p>
-<p class="fact"><b>When:</b> only if you are using the online version of the app <strong>and</strong> you have turned “Offline only” off. It ships <strong>on</strong>, so link previews are off until you choose otherwise.</p>
-<p>When this happens, that website can see your phone’s IP address, the same as if you had opened the link in your browser. WhatDate sends no cookies, no account, and no identifier with the request — only the address and a label saying the request came from WhatDate. Nothing about the fetch comes back to us.</p>
-
+<p class="fact"><b>When:</b> only if you are using the online version of the app <strong>and</strong> you have turned "Offline only" off. It ships <strong>on</strong>, so link previews are off until you choose otherwise.</p>
+<p>When this happens, that website can see your phone's IP address, the same as if you had opened the link in your browser. WhatDate sends no cookies, no account, and no identifier with the request — only the address and a label saying the request came from WhatDate. Nothing about the fetch comes back to us.</p>
 <h3>5. Voice input</h3>
 <p class="fact"><b>What leaves:</b> what you say, while you are using the microphone button.</p>
-<p class="fact"><b>Where it goes:</b> to the speech recognition service built into your phone. On most Android phones that is Google’s, and it may process your speech on Google’s servers, under Google’s privacy policy, not ours.</p>
+<p class="fact"><b>Where it goes:</b> to the speech recognition service built into your phone. On most Android phones that is Google's, and it may process your speech on Google's servers, under Google's privacy policy, not ours.</p>
 <p class="fact"><b>When:</b> only while you are actively using the voice button. The microphone is not open at any other time.</p>
-<p>WhatDate never receives, records, or stores your audio. It only gets back the text and turns it into a reminder. This part of Android is outside our control, which is why we are telling you about it plainly — if you would rather it never happen, don’t use the voice button.</p>
-
+<p>WhatDate never receives, records, or stores your audio. It only gets back the text and turns it into a reminder. This part of Android is outside our control, which is why we are telling you about it plainly — if you would rather it never happen, don't use the voice button.</p>
 <h3>6. Backups you make yourself</h3>
 <p class="fact"><b>What leaves:</b> a backup file containing your data.</p>
-<p class="fact"><b>Where it goes:</b> wherever you choose to save it — your phone’s storage, an SD card, or a cloud drive if you pick one.</p>
+<p class="fact"><b>Where it goes:</b> wherever you choose to save it — your phone's storage, an SD card, or a cloud drive if you pick one.</p>
 <p class="fact"><b>When:</b> only when you tap Backup and choose a location.</p>
 <p>The file is encrypted with a password you choose, using strong encryption (AES-256-GCM). <strong>We cannot recover that password, and neither can anyone else.</strong> If you lose it, that backup cannot be opened, by you or by us.</p>
-<p>If you choose to save the backup to a cloud drive, that cloud provider’s privacy policy then applies to the file — though the contents stay encrypted with your password.</p>
-
-<div class="callout"><p><strong>That’s everything.</strong> No other data leaves your phone at any time, for any reason.</p></div>
-
+<p>If you choose to save the backup to a cloud drive, that cloud provider's privacy policy then applies to the file — though the contents stay encrypted with your password.</p>
+<h3>That's everything.</h3>
+<p>The safety-report flow described below is a separate, explicit exception: it sends only the report package you review and choose to submit. Operating systems, networks, websites you contact, and third-party apps you deliberately hand data to may process their own connection metadata under their own policies.</p>
+<h2>The relay server — what it knows and what it doesn't</h2>
+<p>When you use the online version and add friends, WhatDate uses a small relay server to help your phones find each other and deliver encrypted messages when you are apart. Here is exactly what the relay handles:</p>
+<p><strong>What the relay holds:</strong></p>
+<ul>
+  <li>A pseudonymous installation ID for your WhatDate installation (not intentionally tied by WhatDate to your phone number, email address, contacts, or real name).</li>
+  <li>Your handle, if you chose one (e.g. <code>@alex</code>). For ordinary friendship routing, this is a human-readable field; an explicitly submitted safety report has the separate human-readable fields described below.</li>
+  <li>Public cryptographic keys, so your friend's phone can encrypt messages that only your phone can open.</li>
+  <li>Encrypted message blobs in transit — sealed on the sender's phone, unsealed only on the receiver's phone.</li>
+  <li>Opaque IDs that link two friends' installations for delivery routing.</li>
+  <li>Technical connection/operational metadata needed to run and secure the relay, such as timing, request status, ciphertext size/count, app/protocol version where recorded, and network metadata inherently visible to the server (for example, the source IP address of a connection).</li>
+</ul>
+<p><strong>What the ordinary friendship relay never holds in readable form:</strong></p>
+<ul>
+  <li>Your name, photo, or profile.</li>
+  <li>Your ordinary reminders — their titles, notes, dates, times, tags, attachments, or any content. The only exception is content you separately and explicitly select for an abuse report, as described below.</li>
+  <li>Your phone number, email address, contacts, or real-name identity supplied by WhatDate. The server can still receive ordinary network metadata such as the source IP address of a connection.</li>
+  <li>Private encryption keys — those never leave your phone.</li>
+</ul>
+<p><strong>How long things stay:</strong></p>
+<ul>
+  <li>Encrypted messages: deleted as soon as the receiver's phone picks them up. Uncollected messages expire within 24 hours.</li>
+  <li>Friend request records: expire within 30 days unless a specific abuse/security/legal-preservation reason requires the relevant record to be retained longer.</li>
+  <li>Active friendship routing/key records: remain while the friendship is active because the relay needs them to route and authenticate encrypted traffic.</li>
+  <li>Revoked friendship rows: the full routing record is retained for 30 days after revocation, then deleted. A one-way SHA-256 reservation of each random relationship/mailbox ID remains to prevent ID reuse; it contains no peer bundle or routing metadata. An exact, active preservation hold can delay deletion of a specifically identified record.</li>
+  <li>Handles: stay active while you use WhatDate; released if unused for 180 days, subject to the anti-impersonation quarantine.</li>
+</ul>
+<h3>Reports and blocking</h3>
+<p>You can choose to submit a safety report about a friend, request, or received WhatDate. Before an Online report is sent, WhatDate shows the report package for your review. It contains the category you choose, your optional note, the sender's cryptographic DID and handle when available, a reference ID and timestamp when available, and only the WhatDate title, statement, and date if you separately check the evidence option. Nothing else from your reminders, contacts, or friend list is attached. The report is not end-to-end encrypted: authorized relay operators can read the submitted report package to review it. Reports and selected evidence are stored separately from encrypted delivery and ordinarily deleted 180 days after receipt, unless an exact, documented preservation hold applies.</p>
+<p>Online report submission happens only when you confirm it while WhatDate network access is allowed. With Offline only enabled, or in the Offline build, WhatDate does not upload or queue the report; it offers a system chooser so you can decide whether to send the report text through another app. That app and its recipient then handle it under their own policies. Opening the chooser does not submit a report to WhatDate.</p>
+<p>Blocking is a separate choice from removing a friend. It blocks that cryptographic identity from future local intake and, in Online mode when allowed, asks the relay to stop routes it can enforce. It cannot erase content already delivered to another device. A single report does not automatically ban another user's account; service-wide restrictions require human review.</p>
+<p>For ordinary friend delivery, the relay is a <strong>blind postman</strong>: it carries sealed reminder envelopes without reading their contents. The relay still sees the limited routing and connection metadata described above. WhatDate does not intentionally build a phone-number/email/real-name directory that maps those pseudonymous IDs to a civil identity.</p>
 <h2>What never leaves your phone</h2>
 <p>Some things are local-only by design and are never included in anything shared, even when you share the reminder they belong to:</p>
 <ul>
@@ -149,57 +172,50 @@
   <li><strong>Photos, files, and locations you attach</strong> to a reminder. Attachments stay on your device and are never sent to friends.</li>
   <li><strong>Your notes about who shared what with you</strong>, and your reminder history.</li>
 </ul>
-
 <h2>Permissions, and what each is for</h2>
 <table>
   <tr><th>Permission</th><th>Why WhatDate asks</th></tr>
   <tr><td>Notifications</td><td>To show your reminders when they are due.</td></tr>
-  <tr><td>Alarms &amp; reminders</td><td>To go off at the exact time you set, even when the phone is idle.</td></tr>
+  <tr><td>Alarms & reminders</td><td>To go off at the exact time you set, even when the phone is idle.</td></tr>
+  <tr><td>Full-screen alarms</td><td>To display urgent or private alarms over the lock screen like an incoming phone call.</td></tr>
   <tr><td>Start at boot</td><td>To put your reminders back in place after you restart your phone.</td></tr>
-  <tr><td>Bluetooth &amp; nearby Wi-Fi</td><td>To hand a reminder to a friend’s phone directly when you are together.</td></tr>
+  <tr><td>Bluetooth & nearby Wi-Fi</td><td>To hand a reminder to a friend's phone directly when you are together.</td></tr>
   <tr><td>Location</td><td><strong>Only because Android requires it to scan for nearby devices over Bluetooth.</strong> WhatDate does not read, use, or store where you are for this. You can separately attach a location to a reminder yourself — that stays on your phone.</td></tr>
-  <tr><td>Camera</td><td>To scan a friend’s QR code, and to take a profile photo, if you choose to.</td></tr>
+  <tr><td>Camera</td><td>To scan a friend's QR code, and to take a profile photo, if you choose to.</td></tr>
   <tr><td>Microphone</td><td>Only while you are using the voice button.</td></tr>
   <tr><td>Photos / audio files</td><td>Only when you pick a picture or a reminder sound yourself.</td></tr>
   <tr><td>Fingerprint / face</td><td>Only if you turn on App Lock, to unlock the app.</td></tr>
   <tr><td>Internet</td><td>See below.</td></tr>
 </table>
-
 <h2>The two versions of WhatDate</h2>
 <p>There are two builds of this app:</p>
 <ul>
-  <li><strong>The offline version</strong> has <strong>no internet permission at all</strong>. Android itself will not let it open a network connection, whatever the app tries to do. Link previews simply do not exist in it.</li>
-  <li><strong>The online version</strong> has internet permission, used for one single thing: fetching link previews (section 4 above). It also ships with “Offline only” switched <strong>on</strong>, which blocks even that until you turn it off yourself.</li>
+  <li><strong>The offline version</strong> has <strong>no internet permission at all</strong>. Android itself will not let it open a network connection, whatever the app tries to do. Link previews and online friend delivery do not exist in it. Friends use the shared phone-to-phone Nearby/P2P implementation over supported Bluetooth/Wi-Fi transports.</li>
+  <li><strong>The online version</strong> has internet permission, used for link previews and the Online Friends relay. It ships with "Offline only" switched <strong>on</strong>, which is intended to block WhatDate Internet I/O until you turn it off yourself. In this mode Friends selects the same shared Nearby/P2P implementation used by the Offline build. The code path and mode selection are implemented, but full two-device parity and runtime zero-Internet verification are still in progress; this mode should not yet be described as fully verified equivalent to the Offline build. The Offline build still has no <code>INTERNET</code> permission.</li>
 </ul>
-<p>Adding friends and sharing with them does <strong>not</strong> need the internet in either version. It works phone-to-phone.</p>
-
 <h2>Children</h2>
-<p>WhatDate is not aimed at children under 13, and it does not knowingly collect information from anyone — children included — because it does not collect information at all.</p>
-
+<p>WhatDate is not aimed at children under 13. It does not require a phone number, email address, contact upload, or real-name registration. Online Friends nevertheless processes the limited pseudonymous/technical records described in this policy.</p>
 <h2>Your rights, and deleting your data</h2>
-<p>Because your data only exists on your phone, you are already in full control of it:</p>
+<p>Your local reminders remain under your control:</p>
 <ul>
   <li><strong>To see it:</strong> open the app.</li>
-  <li><strong>To delete one item:</strong> delete it in the app. Deleted items sit in Recently Deleted for 30 days so you can undo a mistake, then they are permanently removed.</li>
-  <li><strong>To delete everything:</strong> uninstall WhatDate. That removes the app’s data from your phone. Any backup files you saved yourself will still exist wherever you put them — delete those separately if you want them gone.</li>
+  <li><strong>To delete one local item:</strong> delete it in the app. Deleted items sit in Recently Deleted for 30 days so you can undo a mistake, then they are permanently removed from this installation.</li>
+  <li><strong>To delete local app data:</strong> uninstall WhatDate. That removes the app's data from your phone. Any backup files you saved yourself will still exist wherever you put them — delete those separately if you want them gone.</li>
+  <li><strong>To release your handle:</strong> use the handle release control. The handle enters the documented quarantine before it can be reused.</li>
+  <li><strong>If you uninstall:</strong> Android removes WhatDate's local app data, but uninstalling does <strong>not</strong> send a reliable deletion signal to the relay. Relay records follow the retention periods above; an abuse report you submitted is ordinarily retained for 180 days unless a specific preservation hold applies. An inactive handle can lapse after 180 days under the current design.</li>
+  <li><strong>For relay-data/privacy questions:</strong> contact <strong><a href="mailto:contact@whatdate.app">contact@whatdate.app</a></strong>. The current handle is an installation-bound pseudonymous identity, not a phone/email/password account.</li>
 </ul>
-<p>We cannot delete your data for you, because we do not have it. There is nothing for us to delete, and no request you need to send us.</p>
-
+<p>WhatDate cannot remotely erase WhatDates or other material already delivered to another person's device, copied, exported, screenshotted, backed up, or retained by an offline/modified client.</p>
 <h2>Third-party components</h2>
-<p>WhatDate includes standard software libraries for things like QR scanning, nearby connections, and database encryption. These run entirely on your phone. None of them collect data about you or send anything to their makers.</p>
+<p>WhatDate includes standard software libraries for things like QR scanning, nearby connections, encryption, and database management. These run entirely on your phone. None of them collect data about you or send anything to their makers.</p>
 <p>WhatDate contains <strong>no</strong> analytics, <strong>no</strong> crash reporting, <strong>no</strong> advertising, and <strong>no</strong> tracking libraries of any kind.</p>
-<p>This page itself loads no fonts, scripts, or images from anywhere else, so reading it does not tell any third party that you were here.</p>
-
 <h2>Changes to this policy</h2>
-<p>If this policy changes, the “Last updated” date at the top will change with it. If we ever change what leaves your phone, we will say so plainly here rather than burying it.</p>
-
+<p>If this policy changes, the "Last updated" date at the top will change with it. If we ever change what leaves your phone, we will say so plainly here rather than burying it.</p>
 <h2>Contact</h2>
 <p>Questions about this policy: <strong><a href="mailto:contact@whatdate.app">contact@whatdate.app</a></strong></p>
-
 <footer>
   <p>Developer: <strong>Arc Sini</strong>, Hyderabad, India</p>
 </footer>
-
 </main>
 </body>
 </html>
