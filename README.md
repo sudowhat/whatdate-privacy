@@ -11,9 +11,11 @@ public.
 
 ## Editing
 
-`index.html` is the published page. The canonical source text is `PRIVACY_POLICY.md` in the app
-repo; when that changes, update `index.html` here to match and bump the "Last updated" date in
-both.
+Do not edit `index.html` by hand. It is generated from the policy inside the app
+(`app/src/main/assets/policies/PRIVACY_POLICY.md` in the app repo) by
+`python tools/policy/privacy_page.py publish`, which also checks that the live page matches.
+The page carries the source text's SHA-256 in `<meta name="whatdate-policy-sha256">`, and a Play
+bundle of the app refuses to build while the live page differs from the app's copy.
 
 The page is deliberately self-contained — no external fonts, scripts, or images. A privacy policy
 that reported its readers to a third-party CDN would be a poor privacy policy.
