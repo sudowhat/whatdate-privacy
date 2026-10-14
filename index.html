@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — WhatDate</title>
-<meta name="whatdate-policy-sha256" content="1bfd0aaeb2478a6e1e194ae8ee4dd340c8afc740de6028c0bfb8a80ebf912951">
+<meta name="whatdate-policy-sha256" content="14972d2c672e6e4f79dcf4b69fcaf97b53c2a66787ecf4f95e8bb958e68c9d63">
 <meta name="description" content="WhatDate's privacy policy: no account, no tracking, encrypted local storage, and optional end-to-end encrypted friends relay.">
 <style>
   :root {
@@ -68,11 +68,17 @@
 <header>
   <h1>Privacy Policy — WhatDate</h1>
 </header>
-<p><strong>Last updated:</strong> 8 October 2026</p>
-<p><strong>Applies to:</strong> WhatDate for Android, version 0.56.0 and later</p>
+<p><strong>Last updated:</strong> 13 October 2026</p>
+<p><strong>Applies to:</strong> WhatDate for Android, version 0.56.0 and later, and WhatDate for iPhone (differences in "On iPhone" below)</p>
 <div class="lede">
 <h2>The short version</h2>
-<p>WhatDate keeps your reminders on your phone.</p>
+<p><strong>Without Friends, your WhatDates stay on your phone.</strong> Nothing you create leaves it unless you act: you share something, send an invite, make a backup, or turn on a feature described below and use it.</p>
+<p>When you use Friends, two different kinds of data can travel, and this policy always says which:</p>
+<ul>
+  <li><strong>Your WhatDates</strong> (and your profile): only the ones you share, only to the friends you choose. Sent online, they are end-to-end encrypted, so the relay that carries them cannot read them.</li>
+  <li><strong>Friends connection data</strong>: what lets two phones find and trust each other. That is public keys, a random installation ID, the friendship handshake, your handle if you choose one, and the sealed (end-to-end-encrypted) envelopes the relay carries. What is used depends on how you connect: nearby, by invite, or online.</li>
+</ul>
+<p>Neither kind leaves without your action or your consent: going online is a setting you choose, and it can be undone at any time.</p>
 <ul>
   <li><strong>There is no conventional email/phone/password account.</strong> Online Friends can create a pseudonymous installation identity and, if you choose one, a handle.</li>
   <li><strong>No analytics, advertising, crash reporting, or behavioral tracking in WhatDate.</strong> Online Friends does process the limited technical records needed to route encrypted friendship traffic. Nearby sharing runs through Google Play services on your phone, which keeps its own usage statistics (see Third-party components).</li>
@@ -81,10 +87,10 @@
 </div>
 <h2>Is there an account?</h2>
 <p>Not in the conventional sign-up sense.</p>
-<p>You do not need an email address, phone number, password, or real-name registration to use WhatDate. Online Friends does, however, create a <strong>pseudonymous installation record</strong> so the relay can authenticate an installation, route encrypted messages, enforce limits, and maintain friendship state. If you choose a handle such as <code>@alex</code>, that handle is also stored by the relay for exact-match discovery.</p>
+<p>You do not need an email address, phone number, password, or real-name registration to use WhatDate. Online Friends does, however, create a <strong>pseudonymous installation record</strong> so the relay can authenticate an installation, route encrypted messages, enforce limits, and maintain friendship state. If you choose a handle such as <code>@alex</code>, that handle is also stored by the relay for exact-match discovery. A handle is optional: you can add friends and share with them without one. Releasing, changing or losing a handle does not end your friendships or the WhatDates you share as links; the handle only stops being a way to find you.</p>
 <p>When you add a friend, the phones exchange cryptographic public keys. A friend relationship therefore binds two WhatDate cryptographic identities. A handle or safety code is not proof of a person's legal identity.</p>
 <h2>What is stored, and where</h2>
-<p>Everything you put into WhatDate is stored <strong>on your phone only</strong>:</p>
+<p>Everything you put into WhatDate is stored <strong>on your phone</strong>. Copies leave it only in the ways listed under "What leaves your phone, and when", each started by you:</p>
 <ul>
   <li>your reminders and events — titles, notes, dates, times, repeat rules, tags</li>
   <li>anything you attach to them — photos, links, locations</li>
@@ -97,8 +103,9 @@
 <p>When you configure an action reminder to open an app at a scheduled time, WhatDate queries your installed applications locally to let you choose the target app. This list is queried on demand, is never saved in any database, and is never transmitted off your phone.</p>
 <h2>What leaves your phone, and when</h2>
 <p>This is the complete list of intended data flows. Reminder content is never uploaded merely because the app is installed. Some Online Friends network operations run in the background after you have enabled Internet access and initiated a friendship/share so delivery, acknowledgements, expiry, and reconciliation can complete.</p>
+<p><strong>Claiming or checking a handle while Offline only is on (online Android edition).</strong> When you tap <strong>Claim @name</strong>, <strong>Check current handle</strong> or <strong>Check claim status</strong> in the handle sheet, WhatDate may register this installation if necessary, claim the selected public handle, or check the installation's current handle. These requests carry Friends connection data only: the chosen handle, installation identifier, public agreement keys and the authentication the relay needs. The server also receives ordinary connection metadata such as the IP address. No WhatDates, profile or private keys are sent. The permission lasts only for that foreground action, up to 30 seconds, and ends on dismissal, leaving the app, or a setting change. Offline only remains on; queued sharing, incoming requests and background online activity stay paused. Opening the sheet, typing a name or receiving an invite grants no connection permission. A claim whose response is lost needs an explicit later check/retry; it is not sent automatically.</p>
 <h3>1a. Sharing with a friend you added in person</h3>
-<p class="fact"><b>What leaves:</b> the WhatDates you created and marked Friends or Public, any WhatDate you send to that friend, and your profile (section 3). Reminders marked Private never leave.</p>
+<p class="fact"><b>What leaves:</b> the WhatDates you created and marked Friends or Public, any WhatDate you send to that friend, and your profile (section 3), plus the Friends connection data that pairing needs (public keys and the signed handshake). Reminders marked Private are never sent.</p>
 <p class="fact"><b>Where it goes:</b> straight to your friend's phone over Bluetooth or Wi-Fi, using Android's Nearby Connections, which Google Play services on your phone carries out.</p>
 <p class="fact"><b>When:</b> while "Deliver when we're near each other" is on and your phones are near each other — including while WhatDate is in the background, with a notification showing — and only with friends you added through WhatDate's nearby pairing: in person with a code, or with a nearby invite you exchanged through another app.</p>
 <p>This is phone-to-phone. It does not use the internet and does not pass through any server of ours. Google Play services keeps its own usage statistics about these connections; see Third-party components.</p>
@@ -128,7 +135,7 @@
 <p class="fact"><b>When:</b> only while you are actively using the voice button. The microphone is not open at any other time.</p>
 <p>WhatDate never receives, records, or stores your audio. It only gets back the text and turns it into a reminder. This part of Android is outside our control, which is why we are telling you about it plainly — if you would rather it never happen, don't use the voice button.</p>
 <h3>6. Backups you make yourself</h3>
-<p class="fact"><b>What leaves:</b> a backup file containing your data, including your attachments.</p>
+<p class="fact"><b>What leaves:</b> a backup file containing everything WhatDate keeps, including Private WhatDates, your attachments, and the private keys that identify you to your friends (so a restore keeps your friendships).</p>
 <p class="fact"><b>Where it goes:</b> to the folder you choose — on your phone, an SD card, or a cloud drive's folder if you pick one.</p>
 <p class="fact"><b>When:</b> when you make a backup yourself, and — only if you turn on automatic backup in Settings → Backup — automatically after you make changes (at most every 10 minutes while you use WhatDate) and when you leave the app.</p>
 <p>The file is encrypted with a password you choose, using strong encryption (AES-256-GCM). <strong>We cannot recover that password, and neither can anyone else.</strong> If you lose it, that backup cannot be opened, by you or by us. For automatic backups, your phone keeps the password in its own secure storage so it can write them; the password never leaves your phone and is never put inside a backup.</p>
@@ -151,7 +158,7 @@
   <li>Your name, photo, or profile.</li>
   <li>Your ordinary reminders — their titles, notes, dates, times, tags, attachments, or any content. The only exception is content you separately and explicitly select for an abuse report, as described below.</li>
   <li>Your phone number, email address, contacts, or real-name identity supplied by WhatDate. The server can still receive ordinary network metadata such as the source IP address of a connection.</li>
-  <li>Private encryption keys — those never leave your phone.</li>
+  <li>Your private encryption keys. They are never sent to the relay or to friends. The only copy that ever leaves your phone is inside a password-encrypted backup you make yourself.</li>
 </ul>
 <p><strong>How long things stay:</strong></p>
 <ul>
@@ -170,14 +177,15 @@
 <p>Online report submission happens only when you confirm it while WhatDate network access is allowed. With Offline only enabled, or in the Offline build, WhatDate does not upload or queue the report; it offers a system chooser so you can decide whether to send the report text through another app. That app and its recipient then handle it under their own policies. Opening the chooser does not submit a report to WhatDate.</p>
 <p>Blocking is a separate choice from removing a friend. It blocks that cryptographic identity from future local intake and, in Online mode when allowed, asks the relay to stop routes it can enforce. It cannot erase content already delivered to another device. A single report does not automatically ban another user's account; service-wide restrictions require human review.</p>
 <p>For ordinary friend delivery, the relay is a <strong>blind postman</strong>: it carries sealed reminder envelopes without reading their contents. The relay still sees the limited routing and connection metadata described above. WhatDate does not intentionally build a phone-number/email/real-name directory that maps those pseudonymous IDs to a civil identity.</p>
-<h2>What never leaves your phone</h2>
-<p>Some things are local-only by design and are never included in anything shared, even when you share the reminder they belong to:</p>
+<h2>What is never shared</h2>
+<p>Some things are local-only by design and are never included in anything shared, even when you share the reminder they belong to. All of them are included in your own password-encrypted backups (section 6), which go only where you choose:</p>
 <ul>
   <li><strong>Reminders marked Private.</strong> These are never put into any share, any invite, or any transfer to a friend.</li>
   <li><strong>Photos, files, and locations you attach</strong> to a reminder. Attachments stay on your device and are never sent to friends. (They are included in your own encrypted backups, which go only where you choose.)</li>
   <li><strong>Your notes about who shared what with you</strong>, and your reminder history.</li>
 </ul>
 <h2>Permissions, and what each is for</h2>
+<p>The table lists Android permissions; iPhone permissions are in "On iPhone" below.</p>
 <table>
 <thead><tr><th>Permission</th><th>Why WhatDate asks</th></tr></thead>
 <tbody>
@@ -202,7 +210,16 @@
 <p>There are two builds of this app:</p>
 <ul>
   <li><strong>The offline version</strong> has <strong>no internet permission at all</strong>. Android itself will not let WhatDate open a network connection, whatever the app tries to do. Link previews and Online Friends do not exist in it. Friends you add in person share phone-to-phone over Bluetooth/Wi-Fi.</li>
-  <li><strong>The online version</strong> has internet permission, used for link previews and Online Friends. The first time you open it, WhatDate asks how you will share: <strong>Family nearby only</strong> (selected unless you change it) keeps "Offline only" on; <strong>Also friends far away</strong> turns it off. You can change this at any time in Settings → Offline only. With Offline only on, WhatDate itself makes no internet connections: Friends works phone-to-phone exactly as in the offline version, and friends on either version can pair and share with each other. Online friends you already have are kept and paused until you go back online.</li>
+  <li><strong>The online version</strong> has internet permission, used for link previews and Online Friends. The first time you open it, WhatDate asks how you will share: <strong>Family nearby only</strong> (selected unless you change it) keeps "Offline only" on; <strong>Also friends far away</strong> turns it off. You can change this at any time in Settings → Offline only. With Offline only on, WhatDate's online activity is paused. The one exception is a handle <strong>Claim</strong> or <strong>Check</strong> you tap yourself (described above): it connects once, for that action only. Direct friendships still work phone-to-phone; online friends you already have are kept and their relay requests/updates remain paused until you enable online activity.</li>
+</ul>
+<h2>On iPhone</h2>
+<p>The iPhone app follows this policy, with these differences:</p>
+<ul>
+  <li><strong>No nearby radio sharing.</strong> You add friends with a QR code or an invite link, and share WhatDates as signed files through the apps you choose.</li>
+  <li><strong>Online Friends is not available on iPhone yet</strong>, and neither is claiming a handle. The iPhone app does not contact WhatDate's relay.</li>
+  <li><strong>Voice input is recognised on the iPhone itself.</strong> If on-device recognition is not available, voice input is off; your audio is never sent anywhere.</li>
+  <li><strong>Backups.</strong> WhatDate's data is excluded from iCloud and device backups, and its keys stay in this iPhone's Keychain. The only backups are the password-encrypted files you make yourself.</li>
+  <li><strong>Permissions</strong> are asked only when you use the feature: notifications (reminders), alarms (Private reminders that ring like an alarm), camera (photos for reminders), microphone and speech recognition (voice input), and Face ID (App lock).</li>
 </ul>
 <h2>Children</h2>
 <p>WhatDate is not aimed at children under 13. It does not require a phone number, email address, contact upload, or real-name registration. Online Friends nevertheless processes the limited pseudonymous/technical records described in this policy.</p>
@@ -222,7 +239,7 @@
 <p>Nearby sharing is the one part that relies on software outside WhatDate: Google Play services, part of Android on most phones, carries out Nearby Connections. Google says it collects usage statistics for Nearby Connections — connection speed and reliability, together with your device model, country, Android build, and the name of the app using it — to improve the service, and that you can control this in your phone's Settings → Google → Usage &amp; diagnostics. Google describes these as performance details, not the content you send. This applies to both versions of WhatDate, because Google Play services is a separate part of your phone with its own internet access, governed by Google's privacy policy.</p>
 <p>WhatDate contains <strong>no</strong> analytics, <strong>no</strong> crash reporting, <strong>no</strong> advertising, and <strong>no</strong> tracking libraries of any kind.</p>
 <h2>Changes to this policy</h2>
-<p>If this policy changes, the "Last updated" date at the top will change with it. If we ever change what leaves your phone, we will say so plainly here rather than burying it. The copy inside the app (Settings → Privacy Policy) and the public copy are made from the same text, and a release is not built while they differ.</p>
+<p>If this policy changes, the "Last updated" date at the top will change with it. If we ever change what leaves your phone, whether your WhatDates or Friends connection data, we will say so plainly here rather than burying it. The copy inside the app (Settings → Privacy Policy) and the public copy are made from the same text, and a release is not built while they differ.</p>
 <h2>Contact</h2>
 <p>Questions about this policy: <strong><a href="mailto:contact@whatdate.app">contact@whatdate.app</a></strong></p>
 <footer>
