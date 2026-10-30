@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — WhatDate</title>
-<meta name="whatdate-policy-sha256" content="c794d5d97a994b99ac435afeaee34c2d7231ce20507760a08e2337c97a1005c7">
+<meta name="whatdate-policy-sha256" content="96c4c36441806a12c41142135c2ed75e2160d586541250864f5e64606d38ef86">
 <meta name="description" content="WhatDate's privacy policy: no account, no tracking, encrypted local storage, and optional end-to-end encrypted friends relay.">
 <style>
   :root {
@@ -68,7 +68,7 @@
 <header>
   <h1>Privacy Policy — WhatDate</h1>
 </header>
-<p><strong>Last updated:</strong> 29 October 2026</p>
+<p><strong>Last updated:</strong> 30 October 2026</p>
 <p><strong>Applies to:</strong> WhatDate for Android, version 0.56.0 and later, and WhatDate for iPhone (differences in "On iPhone" below)</p>
 <div class="lede">
 <h2>The short version</h2>
@@ -105,17 +105,15 @@
 <p>This is the complete list of intended data flows. Reminder content is never uploaded merely because the app is installed. Some Online Friends network operations run in the background after you have enabled Internet access and initiated a friendship/share so delivery, acknowledgements, expiry, and reconciliation can complete.</p>
 <p><strong>Claiming or checking a handle while Offline only is on (online Android edition).</strong> When you tap <strong>Claim @name</strong>, <strong>Check current handle</strong> or <strong>Check claim status</strong> in the handle sheet, WhatDate may register this installation if necessary, claim the selected public handle, or check the installation's current handle. These requests carry Friends connection data only: the chosen handle, installation identifier, public agreement keys and the authentication the relay needs. The server also receives ordinary connection metadata such as the IP address. No WhatDates, profile or private keys are sent. The permission lasts only for that foreground action, up to 30 seconds, and ends on dismissal, leaving the app, or a setting change. Offline only remains on; queued sharing, incoming requests and background online activity stay paused. Opening the sheet, typing a name or receiving an invite grants no connection permission. A claim whose response is lost needs an explicit later check/retry; it is not sent automatically.</p>
 <h3>1a. Sharing with a friend you added in person</h3>
-<p class="fact"><b>What leaves:</b> the WhatDates you created and marked Friends or Public, any WhatDate you send to that friend, and your profile (section 3), plus the Friends connection data that pairing needs (public keys and the signed handshake). Reminders marked Private are never sent.</p>
+<p class="fact"><b>What leaves:</b> the WhatDates you created and marked Friends or Public, any WhatDate you send to that friend, and your profile (section 3), plus the Friends connection data that pairing needs (public keys and the signed handshake). A WhatDate you send to a friend yourself carries its photos, resized and with location data removed; the automatic delivery lists a WhatDate's photos but does not send them. Reminders marked Private are never sent.</p>
 <p class="fact"><b>Where it goes:</b> straight to your friend's phone over Bluetooth or Wi-Fi, using Android's Nearby Connections, which Google Play services on your phone carries out.</p>
 <p class="fact"><b>When:</b> while "Deliver when we're near each other" is on and your phones are near each other — including while WhatDate is in the background, with a notification showing — and only with friends you added through WhatDate's nearby pairing: in person with a code, or with a nearby invite you exchanged through another app.</p>
 <p>This is phone-to-phone. It does not use the internet and does not pass through any server of ours. Google Play services keeps its own usage statistics about these connections; see Third-party components.</p>
 <h3>1b. Sharing with a friend you added online</h3>
-<p class="fact"><b>What leaves:</b> the WhatDate you share with that friend — and, if you shared it as a link, its later changes and its removal — <strong>encrypted on your phone</strong> before it leaves, with a key only your friend's phone can unlock.</p>
-<p class="fact"><b>Where it goes:</b> to a minimal relay server we run, which holds the sealed message until your friend's phone picks it up. The relay <strong>cannot read the contents</strong> — it only sees an opaque encrypted blob with a delivery address.</p>
-<p class="fact"><b>When:</b> when you share a WhatDate with a friend you added online (by handle or online invite), while Offline only is off. If your phone is offline at that moment, the delivery waits and goes when you are back online.</p>
+<p><strong>What leaves:</strong> the WhatDate you share with that friend — and, if you shared it as a link, its later changes and its removal — <strong>encrypted on your phone</strong> before it leaves, with a key only your friend's phone can unlock. <strong>Where it goes:</strong> to a minimal relay server we run, which holds the sealed message until your friend's phone picks it up. The relay <strong>cannot read the contents</strong> — it only sees an opaque encrypted blob with a delivery address. <strong>When:</strong> when you share a WhatDate with a friend you added online (by handle or online invite), while Offline only is off. If your phone is offline at that moment, the delivery waits and goes when you are back online. <strong>Photos</strong> do not go through the relay. The WhatDate arrives with a list of its photos, and before it is sent the app offers to send it as a file instead, which carries them.</p>
 <p>Once your friend's phone picks up the message, its encrypted contents are erased from the relay. Uncollected messages expire and are deleted within 24 hours. More about the relay is in the dedicated section below.</p>
 <h3>2. Sharing a reminder as a message</h3>
-<p class="fact"><b>What leaves:</b> the reminder you chose to share, as a file or a link.</p>
+<p class="fact"><b>What leaves:</b> the reminder you chose to share, as a file or a link. The file of a Friends or Public reminder includes its photos, resized and with location data removed.</p>
 <p class="fact"><b>Where it goes:</b> into whichever app you pick to send it — WhatsApp, email, Signal, whatever you choose.</p>
 <p class="fact"><b>When:</b> only when you tap Share and choose an app.</p>
 <p>Once you hand it to another app, that app's own privacy policy applies to it, not ours. We have no control over, and no visibility into, what happens after that.</p>
@@ -181,7 +179,7 @@
 <p>Some things are local-only by design and are never included in anything shared, even when you share the reminder they belong to. All of them are included in your own password-encrypted backups (section 6), which go only where you choose:</p>
 <ul>
   <li><strong>Reminders marked Private.</strong> These are never put into any share, any invite, or any transfer to a friend.</li>
-  <li><strong>Photos, files, and locations you attach</strong> to a reminder. Attachments stay on your device and are never sent to friends. (They are included in your own encrypted backups, which go only where you choose.)</li>
+  <li><strong>Files and locations you attach</strong> to a reminder, and <strong>the photos on a Private reminder</strong>. These stay on your device and are never sent to friends. Photos on a Friends or Public reminder go with it only when it is shared (sections 1 and 2), as a smaller copy without location data. (Attachments are included in your own encrypted backups, which go only where you choose.)</li>
   <li><strong>Your notes about who shared what with you</strong>, and your reminder history.</li>
 </ul>
 <h2>Permissions, and what each is for</h2>
@@ -241,7 +239,8 @@
 <p><strong>Update checks (Online version installed from Google Play).</strong> At most once a day while you are using Home, WhatDate may ask Google Play whether a newer version of WhatDate is available. Google Play receives the ordinary app/package and device information needed to answer that request under Google's privacy policy. WhatDate does not send your reminders, profile, friends, or other WhatDate content. If an update exists, WhatDate shows an Update app now / Later prompt; choosing Update app now opens the WhatDate listing in Google Play. The Offline version does not include this check.</p>
 <p>WhatDate contains <strong>no</strong> analytics, <strong>no</strong> crash reporting, and <strong>no</strong> tracking libraries of any kind.</p>
 <h2>Changes to this policy</h2>
-<p>If this policy changes, the "Last updated" date at the top will change with it. If we ever change what leaves your phone, whether your WhatDates or Friends connection data, we will say so plainly here rather than burying it. The copy inside the app (Settings → Privacy Policy) and the public copy are made from the same text, and a release is not built while they differ.</p>
+<p>If this policy changes, the "Last updated" date at the top will change with it. If we ever change what leaves your phone, whether your WhatDates or Friends connection data, we will say so plainly here rather than burying it.</p>
+<p class="fact"><b>30 October 2026:</b> photos attached to a Friends or Public WhatDate now go with it when you share it, so it can arrive as an invitation. They are sent as a smaller copy with location data removed; photos on a Private WhatDate, files and locations still never leave your phone. The copy inside the app (Settings → Privacy Policy) and the public copy are made from the same text, and a release is not built while they differ.</p>
 <h2>Contact</h2>
 <p>Questions about this policy: <strong><a href="mailto:contact@whatdate.app">contact@whatdate.app</a></strong></p>
 <footer>
